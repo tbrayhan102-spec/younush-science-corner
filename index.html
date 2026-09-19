@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="bn"> 
-<head> 
+<html lang="bn">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,13 +18,11 @@ body{
   color:#123b67;
 }
 
-/* ব্যানার */
 .hero img{
   width:100%;
   display:block;
 }
 
-/* মেনু */
 .nav{
   display:flex;
   justify-content:center;
@@ -44,7 +42,6 @@ body{
   font-size:16px;
 }
 
-/* মূল অংশ */
 .wrap{
   max-width:1000px;
   margin:auto;
@@ -62,7 +59,6 @@ body{
   font-size:18px;
 }
 
-/* কার্ড */
 .card{
   background:white;
   border-radius:20px;
@@ -71,7 +67,6 @@ body{
   box-shadow:0 8px 30px #9ab4d455;
 }
 
-/* ইনপুট */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -93,7 +88,6 @@ input{
   font-size:16px;
 }
 
-/* বাটন */
 .search{
   width:100%;
   margin-top:15px;
@@ -106,7 +100,6 @@ input{
   font-weight:bold;
 }
 
-/* রেজাল্ট */
 .result{
   display:none;
   background:#f7fffb;
@@ -120,16 +113,13 @@ input{
 }
 
 .profile{
-  width:300px !important;
-  height:300px !important;
-  max-width:300px !important;
+  width:160px;
+  height:160px;
   object-fit:cover;
-  object-position:center;
-  border-radius:50% !important;
-  border:6px solid #18a879;
-  display:block;
-  margin:0 auto 20px;
-  }d dd  }}/* টেবিল */
+  border-radius:50%;
+  border:5px solid #18a67a;
+}
+
 table{
   width:100%;
   border-collapse:collapse;
@@ -155,7 +145,22 @@ td:first-child{
   font-size:14px;
 }
 
-/* Footer */
+.rank{
+  background:#ffb300;
+  color:white;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:14px;
+}
+
+.dateBox{
+  background:#eef8ff;
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0;
+  line-height:1.8;
+}
+
 footer{
   background:#062d5b;
   color:white;
@@ -163,7 +168,6 @@ footer{
   padding:22px;
 }
 
-/* মোবাইল */
 @media(max-width:650px){
 
   .grid,
@@ -189,9 +193,23 @@ footer{
 
 <!-- ব্যানার -->
 <div class="hero">
-  <img src="file_00000000a52c8207aeb549a1f992d494~2.jpg"
-       alt="Yunush Science Corner">
+  <img src="FB_IMG_1789065299921.jpg"
+       alt="Younush Science Corner">
+</div>
 
+
+<!-- মেনু -->
+<div class="nav">
+
+  <button>⌂ হোম</button>
+
+  <button>▣ রেজাল্ট দেখুন</button>
+
+  <button>ⓘ আমাদের সম্পর্কে</button>
+
+  <button>✉ যোগাযোগ</button>
+
+</div>
 
 
 <div class="wrap">
@@ -302,14 +320,32 @@ class="card result"
 id="result">
 
 <h2>
-
 🎓 রেজাল্ট
-
-<span class="ok">
-✓ সফল
-</span>
-
+<span class="ok">✓ সফল</span>
 </h2>
+
+
+<div class="dateBox">
+
+<b>📝 পরীক্ষার তারিখ:</b>
+১৯ সেপ্টেম্বর ২০২৬
+
+<br>
+
+<b>📢 রেজাল্ট প্রকাশ:</b>
+১৯ সেপ্টেম্বর ২০২৬
+
+<br>
+
+<b>📚 পরীক্ষা:</b>
+বাংলা পরীক্ষা
+
+<br>
+
+<b>📊 মোট নম্বর:</b>
+৩০
+
+</div>
 
 
 <div class="resultGrid">
@@ -317,7 +353,13 @@ id="result">
 
 <!-- ছবি -->
 <div>
-<img class="profile" src="FB_IMG_1789065372760.jpg" alt="Profile">
+
+<img
+class="profile"
+src="FB_IMG_1789065372760.jpg"
+alt="Profile"
+>
+
 <p>
 <b>
 Younush Science Corner
@@ -346,7 +388,7 @@ Younush Science Corner
 
 <footer>
 
-© 2026 Yunush Science Corner.
+© 2026 Younush Science Corner.
 All rights reserved.
 
 </footer>
@@ -355,95 +397,137 @@ All rights reserved.
 
 <script>
 
-/* ১৬ জন শিক্ষার্থী */
+/* শিক্ষার্থীদের কোড */
 
 const students = [
 
-  {name:"ehsa",code:"5832"},
+  {
+    name:"ehsa",
+    code:"5832",
+    rank:"১ম",
+    bangla1:11,
+    bangla2:12
+  },
 
-  {name:"mira",code:"9147"},
+  {
+    name:"mira",
+    code:"9147",
+    rank:"৩য়",
+    bangla1:11,
+    bangla2:10
+  },
 
-  {name:"alamin",code:"3265"},
+  {
+    name:"alamin",
+    code:"3265",
+    rank:"",
+    bangla1:8,
+    bangla2:6
+  },
 
-  {name:"muktadir",code:"7481"},
+  {
+    name:"muktadir",
+    code:"7481",
+    rank:"",
+    bangla1:7,
+    bangla2:7
+  },
 
-  {name:"bably",code:"2059"},
+  {
+    name:"bably",
+    code:"2059",
+    rank:"",
+    bangla1:7,
+    bangla2:5
+  },
 
-  {name:"moksedul",code:"8614"},
+  {
+    name:"moksedul",
+    code:"8614",
+    rank:"",
+    bangla1:8,
+    bangla2:9
+  },
 
-  {name:"rayhan",code:"4378"},
+  {
+    name:"rayhan",
+    code:"4378",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  },
 
-  {name:"tisa",code:"6903"},
+  {
+    name:"tisa",
+    code:"6903",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  },
 
-  {name:"saalma",code:"1526"},
+  {
+    name:"saalma",
+    code:"1526",
+    rank:"",
+    bangla1:8,
+    bangla2:7
+  },
 
-  {name:"pritha",code:"8054"},
+  {
+    name:"pritha",
+    code:"8054",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  },
 
-  {name:"kabbo",code:"3749"},
+  {
+    name:"kabbo",
+    code:"3749",
+    rank:"",
+    bangla1:6,
+    bangla2:9
+  },
 
-  {name:"rafi",code:"9261"},
+  {
+    name:"rafi",
+    code:"9261",
+    rank:"২য়",
+    bangla1:14,
+    bangla2:8
+  },
 
-  {name:"Sabir",code:"5187"},
+  {
+    name:"Sabir",
+    code:"5187",
+    rank:"",
+    bangla1:9,
+    bangla2:8
+  },
 
-  {name:"Jesika",code:"2634"},
+  {
+    name:"Jesika",
+    code:"2634",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  },
 
-  {name:"kabbo",code:"7315"},
+  {
+    name:"kabbo",
+    code:"7315",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  },
 
-  {name:"kaaabbo",code:"6492"}
-
-];
-
-
-/* Science-এর বিষয় */
-
-const science = [
-
-  "বাংলা ১ম পত্র",
-
-  "বাংলা ২য় পত্র",
-
-  "English 1st Paper",
-
-  "English 2nd Paper",
-
-  "গণিত",
-
-  "ICT",
-
-  "পদার্থবিজ্ঞান",
-
-  "রসায়ন",
-
-  "জীববিজ্ঞান",
-
-  "উচ্চতর গণিত"
-
-];
-
-
-/* Arts-এর বিষয় */
-
-const arts = [
-
-  "বাংলা ১ম পত্র",
-
-  "বাংলা ২য় পত্র",
-
-  "English 1st Paper",
-
-  "English 2nd Paper",
-
-  "গণিত",
-
-  "ICT",
-
-  "ইতিহাস",
-
-  "ভূগোল",
-
-  "পৌরনীতি ও নাগরিকতা",
-
-  "অর্থনীতি"
+  {
+    name:"kaaabbo",
+    code:"6492",
+    rank:"",
+    bangla1:0,
+    bangla2:0
+  }
 
 ];
 
@@ -477,12 +561,28 @@ function showResult(){
   document.getElementById("result");
 
 
-  /* প্রতিষ্ঠান/বিভাগ নির্বাচন */
+  /* প্রতিষ্ঠান */
 
-  if(type !== "School" || !dept){
+  if(type !== "School"){
 
     msg.textContent =
-    "প্রথমে School ও বিভাগ নির্বাচন করুন।";
+    "প্রথমে School নির্বাচন করুন।";
+
+    result.style.display = "none";
+
+    return;
+
+  }
+
+
+  /* বিভাগ */
+
+  if(!dept){
+
+    msg.textContent =
+    "প্রথমে বিভাগ নির্বাচন করুন।";
+
+    result.style.display = "none";
 
     return;
 
@@ -514,12 +614,11 @@ function showResult(){
   }
 
 
-  /* বিভাগ অনুযায়ী বিষয় */
+  /* মোট নম্বর */
 
-  const subjects =
-  dept === "Science"
-  ? science
-  : arts;
+  const total =
+  student.bangla1 +
+  student.bangla2;
 
 
   let html = "";
@@ -541,38 +640,44 @@ function showResult(){
   `;
 
 
-  /* সব নম্বর ০০ */
-
-  subjects.forEach(function(subject){
-
-    html += `
-    <tr>
-      <td>${subject}</td>
-      <td>০০</td>
-    </tr>
-    `;
-
-  });
+  html += `
+  <tr>
+    <td>বাংলা ১ম পত্র</td>
+    <td>${student.bangla1} / ১৫</td>
+  </tr>
+  `;
 
 
-  /* মোট */
+  html += `
+  <tr>
+    <td>বাংলা ২য় পত্র</td>
+    <td>${student.bangla2} / ১৫</td>
+  </tr>
+  `;
+
 
   html += `
   <tr>
     <td>মোট নম্বর</td>
-    <td>০০ / ${subjects.length * 100}</td>
+    <td><b>${total} / ৩০</b></td>
   </tr>
   `;
 
 
-  /* গ্রেড */
+  if(student.rank){
 
-  html += `
-  <tr>
-    <td>গ্রেড</td>
-    <td>F</td>
-  </tr>
-  `;
+    html += `
+    <tr>
+      <td>অবস্থান</td>
+      <td>
+        <span class="rank">
+        ${student.rank}
+        </span>
+      </td>
+    </tr>
+    `;
+
+  }
 
 
   document.getElementById("marks")
@@ -588,4 +693,4 @@ function showResult(){
 </script>
 
 </body>
-</html>  
+</html>
