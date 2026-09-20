@@ -153,12 +153,32 @@ td:first-child{
   font-size:14px;
 }
 
+.absent{
+  background:#e53935;
+  color:white;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:14px;
+}
+
 .dateBox{
   background:#eef8ff;
   border-radius:14px;
   padding:14px;
   margin:12px 0;
   line-height:1.8;
+}
+
+.history{
+  background:#f5f0ff;
+  border:2px solid #d8c8ff;
+  border-radius:14px;
+  padding:14px;
+  margin-top:15px;
+}
+
+.history h3{
+  margin-top:0;
 }
 
 footer{
@@ -193,17 +213,22 @@ footer{
 
 <!-- ব্যানার -->
 <div class="hero">
-  <img src=file_00000000a52c8207aeb549a1f992d494~2.jpg
+  <img src="FB_IMG_1789065299921.jpg"
        alt="Younush Science Corner">
 </div>
-
 
 <!-- মেনু -->
 <div class="nav">
 
-  
-</div>
+  <button>⌂ হোম</button>
 
+  <button>▣ রেজাল্ট দেখুন</button>
+
+  <button>ⓘ আমাদের সম্পর্কে</button>
+
+  <button>✉ যোগাযোগ</button>
+
+</div>
 
 <div class="wrap">
 
@@ -212,9 +237,8 @@ footer{
 </h1>
 
 <p class="sub">
-রেজাল্ট দেখতে প্রতিষ্ঠান, বিভাগ, নাম ও কোড দিন
+রেজাল্ট দেখতে নিচের সব তথ্য সঠিকভাবে দিন
 </p>
-
 
 <!-- লগইন -->
 <div class="card">
@@ -290,6 +314,34 @@ placeholder="যেমন: 4378"
 
 </div>
 
+
+<div>
+
+<label>
+পরীক্ষার তারিখ
+</label>
+
+<input
+id="examDate"
+type="date"
+>
+
+</div>
+
+
+<div>
+
+<label>
+রেজাল্ট প্রকাশের তারিখ
+</label>
+
+<input
+id="publishDate"
+type="date"
+>
+
+</div>
+
 </div>
 
 
@@ -300,7 +352,6 @@ onclick="showResult()">
 🔎 রেজাল্ট দেখুন
 
 </button>
-
 
 <p id="msg"></p>
 
@@ -321,22 +372,22 @@ id="result">
 <div class="dateBox">
 
 <b>📝 পরীক্ষার তারিখ:</b>
-১৯ সেপ্টেম্বর ২০২৬
+<span id="showExamDate"></span>
 
 <br>
 
 <b>📢 রেজাল্ট প্রকাশ:</b>
-১৯ সেপ্টেম্বর ২০২৬
+<span id="showPublishDate"></span>
 
 <br>
 
 <b>📚 পরীক্ষা:</b>
-বাংলা পরীক্ষা
+<span id="showExamName"></span>
 
 <br>
 
 <b>📊 মোট নম্বর:</b>
-৩০
+<span id="showTotalMarks"></span>
 
 </div>
 
@@ -374,6 +425,20 @@ Younush Science Corner
 
 </div>
 
+
+<!-- পুরোনো রেজাল্ট -->
+<div class="history">
+
+<h3>
+📚 রেজাল্ট ইতিহাস
+</h3>
+
+<p id="historyText">
+এই শিক্ষার্থীর আগের রেজাল্ট এখানে দেখা যাবে।
+</p>
+
+</div>
+
 </div>
 
 </div>
@@ -387,145 +452,204 @@ All rights reserved.
 </footer>
 
 
-
 <script>
 
-/* শিক্ষার্থীদের কোড */
+/*
+=========================================
+ শিক্ষার্থীদের তথ্য
+=========================================
+*/
 
 const students = [
 
-  {
-    name:"ehsa",
-    code:"5832",
-    rank:"১ম",
-    bangla1:11,
-    bangla2:12
-  },
+  {name:"ehsa", code:"5832"},
+  {name:"mira", code:"9147"},
+  {name:"alamin", code:"3265"},
+  {name:"muktadir", code:"7481"},
+  {name:"bably", code:"2059"},
+  {name:"moksedul", code:"8614"},
+  {name:"rayhan", code:"4378"},
+  {name:"tisa", code:"6903"},
+  {name:"saalma", code:"1526"},
+  {name:"pritha", code:"8054"},
+  {name:"kabbo", code:"3749"},
+  {name:"rafi", code:"9261"},
+  {name:"Sabir", code:"5187"},
+  {name:"Jesika", code:"2634"},
+  {name:"kabbo", code:"7315"},
+  {name:"kaaabbo", code:"6492"},
+
+  {name:"Mamun", code:"6842"},
+  {name:"Turzaun", code:"5179"}
+
+];
+
+
+/*
+=========================================
+ পরীক্ষার রেজাল্ট
+=========================================
+
+ নতুন পরীক্ষা যোগ করার সময়
+ এখানে নতুন একটি পরীক্ষার তথ্য যোগ করবে।
+
+ পুরোনো পরীক্ষা মুছবে না।
+=========================================
+*/
+
+const results = [
 
   {
-    name:"mira",
-    code:"9147",
-    rank:"৩য়",
-    bangla1:11,
-    bangla2:10
-  },
+    examDate:"2026-09-19",
+    publishDate:"2026-09-19",
+    examName:"বাংলা পরীক্ষা",
+    totalMarks:30,
 
-  {
-    name:"alamin",
-    code:"3265",
-    rank:"",
-    bangla1:8,
-    bangla2:6
-  },
+    students:{
 
-  {
-    name:"muktadir",
-    code:"7481",
-    rank:"",
-    bangla1:7,
-    bangla2:7
-  },
+      "5832":{
+        bangla1:11,
+        bangla2:12,
+        rank:"১ম"
+      },
 
-  {
-    name:"bably",
-    code:"2059",
-    rank:"",
-    bangla1:7,
-    bangla2:5
-  },
+      "9147":{
+        bangla1:11,
+        bangla2:10,
+        rank:"৩য়"
+      },
 
-  {
-    name:"moksedul",
-    code:"8614",
-    rank:"",
-    bangla1:8,
-    bangla2:9
-  },
+      "3265":{
+        bangla1:8,
+        bangla2:6,
+        rank:""
+      },
 
-  {
-    name:"rayhan",
-    code:"4378",
-    rank:"",
-    bangla1:0,
-    bangla2:0
-  },
+      "7481":{
+        bangla1:7,
+        bangla2:7,
+        rank:""
+      },
 
-  {
-    name:"tisa",
-    code:"6903",
-    rank:"",
-    bangla1:0,
-    bangla2:0
-  },
+      "2059":{
+        bangla1:7,
+        bangla2:5,
+        rank:""
+      },
 
-  {
-    name:"saalma",
-    code:"1526",
-    rank:"",
-    bangla1:8,
-    bangla2:7
-  },
+      "8614":{
+        bangla1:8,
+        bangla2:9,
+        rank:""
+      },
 
-  {
-    name:"pritha",
-    code:"8054",
-    rank:"",
-    bangla1:0,
-    bangla2:0
-  },
+      "4378":{
+        absent:true
+      },
 
-  {
-    name:"kabbo",
-    code:"3749",
-    rank:"",
-    bangla1:6,
-    bangla2:9
-  },
+      "6903":{
+        absent:true
+      },
 
-  {
-    name:"rafi",
-    code:"9261",
-    rank:"২য়",
-    bangla1:14,
-    bangla2:8
-  },
+      "1526":{
+        bangla1:8,
+        bangla2:7,
+        rank:""
+      },
 
-  {
-    name:"Sabir",
-    code:"5187",
-    rank:"",
-    bangla1:9,
-    bangla2:8
-  },
+      "8054":{
+        absent:true
+      },
 
-  {
-    name:"Jesika",
-    code:"2634",
-    rank:"",
-    bangla1:0,
-    bangla2:0
-  },
+      "3749":{
+        bangla1:6,
+        bangla2:9,
+        rank:""
+      },
 
-  {
-    name:"kabbo",
-    code:"7315",
-    rank:"",
-    bangla1:0,
-    bangla2:0
-  },
+      "9261":{
+        bangla1:14,
+        bangla2:8,
+        rank:"২য়"
+      },
 
-  {
-    name:"kaaabbo",
-    code:"6492",
-    rank:"",
-    bangla1:0,
-    bangla2:0
+      "5187":{
+        bangla1:9,
+        bangla2:8,
+        rank:""
+      },
+
+      "2634":{
+        absent:true
+      },
+
+      "7315":{
+        absent:true
+      },
+
+      "6492":{
+        absent:true
+      },
+
+      "6842":{
+        bangla1:8,
+        bangla2:11,
+        rank:""
+      },
+
+      "5179":{
+        bangla1:9,
+        bangla2:8,
+        rank:""
+      }
+
+    }
+
   }
 
 ];
 
 
-/* রেজাল্ট দেখানো */
+/*
+=========================================
+ তারিখ সুন্দরভাবে দেখানো
+=========================================
+*/
+
+function formatDate(date){
+
+  const parts = date.split("-");
+
+  const year = parts[0];
+  const month = parts[1];
+  const day = parts[2];
+
+  const months = [
+    "",
+    "জানুয়ারি",
+    "ফেব্রুয়ারি",
+    "মার্চ",
+    "এপ্রিল",
+    "মে",
+    "জুন",
+    "জুলাই",
+    "আগস্ট",
+    "সেপ্টেম্বর",
+    "অক্টোবর",
+    "নভেম্বর",
+    "ডিসেম্বর"
+  ];
+
+  return day + " " + months[Number(month)] + " " + year;
+
+}
+
+
+/*
+=========================================
+ রেজাল্ট দেখানো
+=========================================
+*/
 
 function showResult(){
 
@@ -546,6 +670,12 @@ function showResult(){
   .value
   .trim();
 
+  const examDate =
+  document.getElementById("examDate").value;
+
+  const publishDate =
+  document.getElementById("publishDate").value;
+
 
   const msg =
   document.getElementById("msg");
@@ -554,7 +684,9 @@ function showResult(){
   document.getElementById("result");
 
 
-  /* প্রতিষ্ঠান */
+  /*
+  প্রতিষ্ঠান
+  */
 
   if(type !== "School"){
 
@@ -568,7 +700,9 @@ function showResult(){
   }
 
 
-  /* বিভাগ */
+  /*
+  বিভাগ
+  */
 
   if(!dept){
 
@@ -582,7 +716,9 @@ function showResult(){
   }
 
 
-  /* শিক্ষার্থী খোঁজা */
+  /*
+  নাম ও কোড
+  */
 
   const student =
   students.find(function(x){
@@ -592,8 +728,6 @@ function showResult(){
 
   });
 
-
-  /* ভুল নাম/কোড */
 
   if(!student){
 
@@ -607,11 +741,171 @@ function showResult(){
   }
 
 
-  /* মোট নম্বর */
+  /*
+  পরীক্ষার তারিখ
+  */
+
+  if(!examDate){
+
+    result.style.display = "none";
+
+    msg.textContent =
+    "পরীক্ষার তারিখ দিন।";
+
+    return;
+
+  }
+
+
+  /*
+  রেজাল্ট প্রকাশের তারিখ
+  */
+
+  if(!publishDate){
+
+    result.style.display = "none";
+
+    msg.textContent =
+    "রেজাল্ট প্রকাশের তারিখ দিন।";
+
+    return;
+
+  }
+
+
+  /*
+  তারিখ অনুযায়ী পরীক্ষা খোঁজা
+  */
+
+  const exam =
+  results.find(function(x){
+
+    return x.examDate === examDate
+    && x.publishDate === publishDate;
+
+  });
+
+
+  /*
+  এমন পরীক্ষা নেই
+  */
+
+  if(!exam){
+
+    result.style.display = "none";
+
+    msg.textContent =
+    "এই পরীক্ষার তারিখ ও প্রকাশের তারিখের কোনো রেজাল্ট পাওয়া যায়নি।";
+
+    return;
+
+  }
+
+
+  /*
+  এই ছাত্রের রেজাল্ট
+  */
+
+  const studentResult =
+  exam.students[code];
+
+
+  /*
+  এই পরীক্ষায় ছাত্রের রেজাল্ট নেই
+  */
+
+  if(!studentResult){
+
+    result.style.display = "none";
+
+    msg.textContent =
+    "এই পরীক্ষায় এই শিক্ষার্থীর রেজাল্ট পাওয়া যায়নি।";
+
+    return;
+
+  }
+
+
+  /*
+  তারিখ ও পরীক্ষা
+  */
+
+  document.getElementById("showExamDate")
+  .textContent =
+  formatDate(exam.examDate);
+
+
+  document.getElementById("showPublishDate")
+  .textContent =
+  formatDate(exam.publishDate);
+
+
+  document.getElementById("showExamName")
+  .textContent =
+  exam.examName;
+
+
+  document.getElementById("showTotalMarks")
+  .textContent =
+  exam.totalMarks;
+
+
+  /*
+  পরীক্ষা দেয়নি
+  */
+
+  if(studentResult.absent){
+
+    let html = "";
+
+    html += `
+      <tr>
+        <td>নাম</td>
+        <td>${student.name}</td>
+      </tr>
+    `;
+
+    html += `
+      <tr>
+        <td>রেজাল্ট কোড</td>
+        <td>${student.code}</td>
+      </tr>
+    `;
+
+    html += `
+      <tr>
+        <td>ফলাফল</td>
+        <td>
+          <span class="absent">
+          ❌ পরীক্ষা দেয়নি
+          </span>
+        </td>
+      </tr>
+    `;
+
+    document.getElementById("marks")
+    .innerHTML = html;
+
+    document.getElementById("historyText")
+    .textContent =
+    "এই পরীক্ষায় শিক্ষার্থী পরীক্ষা দেয়নি।";
+
+    result.style.display = "block";
+
+    msg.textContent = "";
+
+    return;
+
+  }
+
+
+  /*
+  নম্বর
+  */
 
   const total =
-  student.bangla1 +
-  student.bangla2;
+  studentResult.bangla1 +
+  studentResult.bangla2;
 
 
   let html = "";
@@ -636,7 +930,7 @@ function showResult(){
   html += `
   <tr>
     <td>বাংলা ১ম পত্র</td>
-    <td>${student.bangla1} / ১৫</td>
+    <td>${studentResult.bangla1} / ১৫</td>
   </tr>
   `;
 
@@ -644,7 +938,7 @@ function showResult(){
   html += `
   <tr>
     <td>বাংলা ২য় পত্র</td>
-    <td>${student.bangla2} / ১৫</td>
+    <td>${studentResult.bangla2} / ১৫</td>
   </tr>
   `;
 
@@ -652,19 +946,25 @@ function showResult(){
   html += `
   <tr>
     <td>মোট নম্বর</td>
-    <td><b>${total} / ৩০</b></td>
+    <td>
+      <b>${total} / ${exam.totalMarks}</b>
+    </td>
   </tr>
   `;
 
 
-  if(student.rank){
+  /*
+  অবস্থান
+  */
+
+  if(studentResult.rank){
 
     html += `
     <tr>
       <td>অবস্থান</td>
       <td>
         <span class="rank">
-        ${student.rank}
+        ${studentResult.rank}
         </span>
       </td>
     </tr>
@@ -677,6 +977,17 @@ function showResult(){
   .innerHTML = html;
 
 
+  /*
+  ইতিহাস
+  */
+
+  document.getElementById("historyText")
+  .textContent =
+  "এই রেজাল্টটি " +
+  formatDate(exam.examDate) +
+  " তারিখের পরীক্ষার ফলাফল।";
+
+
   result.style.display = "block";
 
   msg.textContent = "";
@@ -686,4 +997,4 @@ function showResult(){
 </script>
 
 </body>
-</html>
+    </html>
